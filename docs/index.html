@@ -1,7 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handmade Wooden Home Decorations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 2rem;
+        }
+        .product {
+            background: #fff;
+            border: 1px solid #ddd;
+            margin: 1rem;
+            padding: 1rem;
+            width: calc(33% - 2rem);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product img {
+            width: 100%;
+        }
+        .product h2 {
+            margin: 0.5rem 0;
+        }
+        .product p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .custom-form {
+            background: #fff;
+            border: 1px solid #ddd;
+            margin: 2rem 0;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .custom-form h2 {
+            margin-top: 0;
+        }
+        .custom-form input, .custom-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .custom-form button {
+            display: inline-block;
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .custom-form button:hover {
+            background: #555;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <header>
+        <div class="container">
+            <h1>Handmade Wooden Home Decorations</h1>
+            <p>Custom Engravings Available</p>
+        </div>
+    </header>
+    <div class="container">
+        <section class="products">
+            <div class="product">
+                <img src="cup.jpg" alt="Wooden Cup">
+                <h2>Wooden Cup</h2>
+                <p>Beautifully crafted wooden cup. Perfect for your morning coffee or tea.</p>
+            </div>
+            <div class="product">
+                <img src="coaster.jpg" alt="Plate Coaster">
+                <h2>Plate Coaster</h2>
+                <p>Handmade plate coaster with intricate designs. Keep your table safe and stylish.</p>
+            </div>
+            <!-- Add more products as needed -->
+        </section>
+        <section class="custom-form">
+            <h2>Custom Engraving Request</h2>
+            <form action="submit_custom_request.php" method="post">
+                <label for="product">Choose a Product:</label>
+                <select id="product" name="product">
+                    <option value="wooden-cup">Wooden Cup</option>
+                    <option value="plate-coaster">Plate Coaster</option>
+                    <!-- Add more product options as needed -->
+                </select>
+                <label for="engraving-text">Custom Engraving Text:</label>
+                <textarea id="engraving-text" name="engraving_text" rows="4" placeholder="Enter your custom text here..."></textarea>
+                <button type="submit">Submit Request</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Handmade Wooden Home Decorations. All rights reserved.</p>
+    </footer>
 </body>
 </html>
