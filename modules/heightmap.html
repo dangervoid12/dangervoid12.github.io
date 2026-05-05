@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heightmap 3D - GcodePlanner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="module-page">
+
+<header id="header">
+    <a href="../index.html" class="logo">Gcode<span>Planner</span></a>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#modules">Modules</a>
+        <a href="../index.html#technical">Technical</a>
+        <a href="../pricing.html">Plans</a>
+        <a href="../download.html">Download</a>
+        <a href="../contact.html">Contact</a>
+    </nav>
+    <a href="../pricing.html" class="btn">Get License</a>
+</header>
+
+<div class="sub-menu">
+    <a href="sheetmetal.html">Sheet Metal</a>
+    <a href="furniture.html">Furniture</a>
+    <a href="nesting.html">Nesting</a>
+    <a href="machining.html">Machining</a>
+    <a href="drawing.html">Drawing</a>
+    <a href="feedsandspeeds.html">Feeds & Speeds</a>
+    <a href="heightmap.html">Heightmap</a>
+    <a href="materials.html">Materials</a>
+    <a href="files.html">Files</a>
+    <a href="report.html">Report</a>
+</div>
+
+<div class="module-hero" style="background: linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.84)), url('../img/Heightmap-Overview.png') center/cover;">
+    <h1>Heightmap 3D Module</h1>
+</div>
+
+<div class="content">
+    <h2 style="font-size:2.6rem; margin-bottom:25px;">3D Toolpath Generation from Grayscale Images</h2>
+    <p style="font-size:1.3rem; max-width:1100px; margin-bottom:40px;">
+        The Heightmap 3D Module in GcodePlanner opens up new possibilities for creative and technical machining. It allows you to transform grayscale images, topographic maps, and 3D data into precise, high-quality 3D toolpaths for artistic carvings, relief maps, and textured surfaces.
+    </p>
+
+    <div class="photo-grid">
+        <div>
+            <img src="../img/Heightmap-1.png" alt="3D Relief Mapping">
+            <p style="text-align:center; margin-top:18px; color:#aaa;">High-Precision 3D Relief Mapping</p>
+        </div>
+        <div>
+            <img src="../img/Heightmap-2.png" alt="Heightmap Setup">
+            <p style="text-align:center; margin-top:18px; color:#aaa;">Heightmap setup and parameter view</p>
+        </div>
+        <div>
+            <img src="../img/Heightmap-3.png" alt="Texture Machining">
+            <p style="text-align:center; margin-top:18px; color:#aaa;">Detailed Texture & Surface Machining</p>
+        </div>
+    </div>
+
+    <h3 style="margin:45px 0 20px;">Key Features</h3>
+    <ul style="font-size:1.22rem; line-height:2.35;">
+        <li><strong>Image-to-3D:</strong> Convert any standard image format (JPG, PNG, TIFF) into a 3D heightmap for machining.</li>
+        <li><strong>Topographic Support:</strong> Ideal for creating physical terrain models and geographic reliefs.</li>
+        <li><strong>Variable Resolution:</strong> Control the level of detail with adjustable sampling and stepover parameters.</li>
+        <li><strong>Advanced 3D Strategies:</strong> Roughing and finishing cycles designed for high-quality surface results.</li>
+        <li><strong>Z-Mapping:</strong> Precise control over Z-axis scaling and offset for various material thicknesses.</li>
+        <li><strong>Real-time 3D Simulation:</strong> Visualize the final result before sending it to the machine.</li>
+    </ul>
+
+    <p style="margin-top:40px; font-size:1.2rem;">
+        From artistic woodworking to specialized industrial textures, the Heightmap 3D module provides the tools needed to easily bridge the gap between 2D images and complex 3D physical objects.
+    </p>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.content > *').forEach((el, i) => {
+        el.classList.add('fade-in');
+        setTimeout(() => el.classList.add('visible'), 100 + i * 150);
+      });
+    });
+</script>
+</body>
+</html>

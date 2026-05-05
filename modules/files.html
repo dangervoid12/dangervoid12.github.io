@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files - GcodePlanner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="module-page">
+
+<header id="header">
+    <a href="../index.html" class="logo">Gcode<span>Planner</span></a>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#modules">Modules</a>
+        <a href="../index.html#technical">Technical</a>
+        <a href="../pricing.html">Plans</a>
+        <a href="../download.html">Download</a>
+        <a href="../contact.html">Contact</a>
+    </nav>
+    <a href="../pricing.html" class="btn">Get License</a>
+</header>
+
+<div class="sub-menu">
+    <a href="sheetmetal.html">Sheet Metal</a>
+    <a href="furniture.html">Furniture</a>
+    <a href="nesting.html">Nesting</a>
+    <a href="machining.html">Machining</a>
+    <a href="drawing.html">Drawing</a>
+    <a href="feedsandspeeds.html">Feeds & Speeds</a>
+    <a href="heightmap.html">Heightmap</a>
+    <a href="materials.html">Materials</a>
+    <a href="files.html">Files</a>
+    <a href="report.html">Report</a>
+</div>
+
+<div class="module-hero" style="background: linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.84)), url('../img/Files-1.png') center/cover;">
+    <h1>Files Module</h1>
+</div>
+
+<div class="content">
+    <h2 style="font-size:2.6rem; margin-bottom:25px;">Intelligent DXF & DWG Import System</h2>
+    <p style="font-size:1.3rem; max-width:1100px; margin-bottom:40px;">
+        The Files Module is the foundation of efficient workflow in GcodePlanner. It provides fast, accurate, and intelligent importing of DXF and DWG files with automatic optimization, making it ideal for woodworking, metalworking, and ACM fabrication shops.
+    </p>
+
+    <div class="photo-grid">
+        <div>
+            <img src="../img/Files-1.png" alt="DXF Import">
+            <p style="text-align:center; margin-top:18px; color:#aaa;">DXF/DWG File Import Preview</p>
+        </div>
+        <div>
+            <img src="../img/Files-2.png" alt="Cleaned Geometry">
+            <p style="text-align:center; margin-top:18px; color:#aaa;">Optimized and Cleaned Geometry</p>
+        </div>
+    </div>
+
+    <h3 style="margin:45px 0 20px;">Key Features</h3>
+    <ul style="font-size:1.22rem; line-height:2.35;">
+        <li>High-fidelity import of DXF and DWG formats with excellent compatibility</li>
+        <li>Intelligent layer recognition and selective import options</li>
+        <li>Automatic geometry cleanup, optimization, and error correction</li>
+        <li>Support for blocks, XREFs, hatches, and complex entities</li>
+        <li>Fast processing even with very large and detailed drawings</li>
+        <li>Seamless integration with Nesting, Machining, and Sheet Metal modules</li>
+    </ul>
+
+    <p style="margin-top:40px; font-size:1.2rem;">
+        Thanks to its speed and precision, this module allows you to move from customer drawings to production-ready files in minutes, saving valuable time and reducing manual corrections.
+    </p>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.content > *').forEach((el, i) => {
+        el.classList.add('fade-in');
+        setTimeout(() => el.classList.add('visible'), 100 + i * 150);
+      });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+/* style.css - Final Dynamic Version */
+:root {
+  --primary: #0066ff;
+  --accent: #00ccff;
+  --dark: #0a0a0a;
+  --gray: #1a1a1a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--dark);
+  color: #ddd;
+  line-height: 1.7;
+}
+
+/* Glassmorphism Header */
+header {
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1.1rem 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.4s ease;
+}
+
+header.scrolled {
+  padding: 0.85rem 6%;
+  background: rgba(10, 10, 10, 0.97);
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.logo:hover { transform: scale(1.06); }
+.logo span { color: var(--primary); }
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 16px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: all 0.4s ease;
+}
+
+nav a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+nav a:hover {
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Buttons */
+.btn {
+  padding: 14px 36px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 5px 20px rgba(0, 102, 255, 0.35);
+}
+
+.btn:hover {
+  transform: translateY(-6px) scale(1.06);
+  box-shadow: 0 15px 35px rgba(0, 102, 255, 0.5);
+  background: #3388ff;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid #777;
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: white;
+}
+
+/* Common Content */
+.section-title, .module-hero h1 {
+  background: linear-gradient(90deg, #ffffff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.content {
+  max-width: 1250px;
+  margin: 80px auto;
+  padding: 0 6%;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+  gap: 40px;
+  margin: 60px 0;
+}
+
+.photo-grid img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.65);
+  transition: all 0.5s ease;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.04) translateY(-8px);
+}
+
+/* Fade-in Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.9s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === SUB MENU FOR MODULES === */
+.sub-menu {
+  background: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 12px 6%;
+  border-top: 1px solid #222;
+  display: none;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 0.95rem;
+}
+
+.sub-menu a {
+  color: #aaa;
+  text-decoration: none;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.sub-menu a:hover {
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* Show sub-menu only on module pages */
+body.module-page .sub-menu {
+  display: flex;
+}

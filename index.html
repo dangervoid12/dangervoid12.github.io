@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GcodePlanner - Advanced CAD/CAM Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body.home-page {
+          background: #06080a;
+        }
+        .home-fixed-bg {
+          position: fixed;
+          inset: 0;
+          z-index: -2;
+          background:
+            linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.82)),
+            url('img/MainWindowOverview.png') center top / cover no-repeat;
+          background-attachment: fixed;
+        }
+        .home-overlay {
+          position: fixed;
+          inset: 0;
+          z-index: -1;
+          background: linear-gradient(180deg, rgba(5,7,10,0.18), rgba(5,7,10,0.58));
+          pointer-events: none;
+        }
+        .home-section {
+          background: rgba(10, 12, 16, 0.76);
+          backdrop-filter: blur(4px);
+        }
+        .hero-section {
+          min-height: 100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          text-align:center;
+        }
+        .modules-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+          gap: 28px;
+        }
+        .module-card {
+          background: var(--gray);
+          border-radius: 16px;
+          overflow: hidden;
+          transition: all 0.5s;
+          border: 1px solid #333;
+          text-decoration: none;
+          color: inherit;
+          display: flex;
+          flex-direction: column;
+        }
+        .module-card:hover {
+          transform: translateY(-18px);
+          border-color: var(--primary);
+          box-shadow: 0 20px 40px rgba(0,102,255,0.2);
+        }
+        .module-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin: 30px auto 20px;
+        }
+        .module-card h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .module-card p {
+            padding: 0 25px 30px;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+        .module-card.module-card-static {
+            cursor: default;
+        }
+        .workflow-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 22px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .workflow-card,
+        .info-panel {
+          background: var(--gray);
+          border: 1px solid #2b2b2b;
+          border-radius: 16px;
+          padding: 28px;
+        }
+        .workflow-card span {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: rgba(0, 102, 255, 0.16);
+          color: var(--accent);
+          font-weight: 700;
+          margin-bottom: 16px;
+        }
+        .workflow-card h3,
+        .info-panel h3 {
+          margin-bottom: 12px;
+          color: white;
+        }
+        .info-layout {
+          display: grid;
+          grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+          gap: 28px;
+          max-width: 1200px;
+          margin: 0 auto;
+          align-items: start;
+        }
+        .info-list {
+          list-style: none;
+          display: grid;
+          gap: 14px;
+          margin-top: 18px;
+        }
+        .info-list li {
+          padding: 14px 16px;
+          background: #151515;
+          border: 1px solid #252525;
+          border-radius: 12px;
+          color: #cbcbcb;
+        }
+        .feature-groups {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 28px;
+          max-width: 1320px;
+          margin: 0 auto;
+        }
+        .feature-group {
+          background: rgba(22, 24, 28, 0.92);
+          border: 1px solid #2c2f36;
+          border-radius: 16px;
+          padding: 30px;
+        }
+        .feature-group h3 {
+          color: white;
+          margin-bottom: 16px;
+        }
+        .feature-group ul {
+          list-style: none;
+          display: grid;
+          gap: 12px;
+        }
+        .feature-group li {
+          padding: 12px 14px;
+          background: #14171c;
+          border: 1px solid #242831;
+          border-radius: 12px;
+          color: #c9d0d9;
+        }
+        @media (max-width: 900px) {
+          .info-layout {
+            grid-template-columns: 1fr;
+          }
+        }
+    </style>
+</head>
+<body class="home-page">
+
+<div class="home-fixed-bg"></div>
+<div class="home-overlay"></div>
+
+<header id="header">
+    <a href="index.html" class="logo">Gcode<span>Planner</span></a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#modules">Modules</a>
+        <a href="#technical">Technical</a>
+        <a href="pricing.html">Plans</a>
+        <a href="download.html">Download</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="pricing.html" class="btn">Get License</a>
+</header>
+
+<div class="sub-menu">
+    <a href="modules/sheetmetal.html">Sheet Metal</a>
+    <a href="modules/furniture.html">Furniture</a>
+    <a href="modules/nesting.html">Nesting</a>
+    <a href="modules/machining.html">Machining</a>
+    <a href="modules/drawing.html">Drawing</a>
+    <a href="modules/feedsandspeeds.html">Feeds & Speeds</a>
+    <a href="modules/heightmap.html">Heightmap</a>
+    <a href="modules/materials.html">Materials</a>
+    <a href="modules/files.html">Files</a>
+    <a href="modules/report.html">Report</a>
+</div>
+
+<section class="hero-section">
+    <div>
+        <h1 style="font-size:4.8rem; margin-bottom:1rem; font-weight:700;">GcodePlanner</h1>
+        <p style="font-size:1.7rem; color:#ccc; max-width:850px; margin:0 auto 3rem;">
+            Professional CAD/CAM software for production planning and output.
+        </p>
+        <div>
+            <a href="download.html" class="btn">Download Demo</a>
+            <a href="pricing.html" class="btn btn-secondary">View Pricing</a>
+        </div>
+    </div>
+</section>
+
+<section id="modules" class="home-section" style="padding:120px 6% 100px;">
+    <h2 class="section-title">Powerful Modules</h2>
+    <div class="modules-grid">
+        <a href="modules/sheetmetal.html" class="module-card">
+            <i class="fas fa-layer-group"></i>
+            <h3>Sheet Metal</h3>
+            <p>Prepare unfolded parts for fabrication work.</p>
+        </a>
+        <a href="modules/furniture.html" class="module-card">
+            <i class="fas fa-couch"></i>
+            <h3>Furniture Designer</h3>
+            <p>Build cabinets and furniture from parametric layouts.</p>
+        </a>
+        <a href="modules/nesting.html" class="module-card">
+            <i class="fas fa-puzzle-piece"></i>
+            <h3>Intelligent Nesting</h3>
+            <p>Arrange parts on sheets with the built-in nesting engine.</p>
+        </a>
+        <a href="modules/machining.html" class="module-card">
+            <i class="fas fa-microchip"></i>
+            <h3>CAM & Machining</h3>
+            <p>Automatic toolpath generation for 2.5D and 3-axis work.</p>
+        </a>
+        <a href="modules/feedsandspeeds.html" class="module-card">
+            <i class="fas fa-tachometer-alt"></i>
+            <h3>Feeds & Speeds</h3>
+            <p>Calculate cutting parameters for tools and materials.</p>
+        </a>
+        <a href="modules/drawing.html" class="module-card">
+            <i class="fas fa-pencil-ruler"></i>
+            <h3>CAD Drawing</h3>
+            <p>Integrated 2D editing for production-ready DXF and DWG geometry.</p>
+        </a>
+        <a href="modules/heightmap.html" class="module-card">
+            <i class="fas fa-mountain"></i>
+            <h3>Heightmap 3D</h3>
+            <p>Build relief machining from image-based height data.</p>
+        </a>
+        <a href="modules/materials.html" class="module-card">
+            <i class="fas fa-boxes"></i>
+            <h3>Materials Library</h3>
+            <p>Store sheet settings, costs, and material parameters.</p>
+        </a>
+        <a href="modules/files.html" class="module-card">
+            <i class="fas fa-folder-open"></i>
+            <h3>Files</h3>
+            <p>Import source drawings, organize project parts, and manage loaded geometry.</p>
+        </a>
+        <a href="modules/report.html" class="module-card">
+            <i class="fas fa-file-lines"></i>
+            <h3>Report</h3>
+            <p>Prepare project reports with nesting views, times, tools, and production details.</p>
+        </a>
+        <a href="pricing.html#generation-workflow" class="module-card">
+            <i class="fas fa-gears"></i>
+            <h3>Generation</h3>
+            <p>Build final machine output with the active machine, postprocessor, and program settings.</p>
+        </a>
+        <a href="pricing.html#machine-handling" class="module-card">
+            <i class="fas fa-robot"></i>
+            <h3>Machine Setup</h3>
+            <p>Store machine profiles, switch project context, and control single or multi-machine workflows.</p>
+        </a>
+        <a href="pricing.html#workflow-access" class="module-card">
+            <i class="fas fa-arrow-up-right-from-square"></i>
+            <h3>Export</h3>
+            <p>Export finished geometry, outputs, and downstream data for fabrication and handoff.</p>
+        </a>
+    </div>
+</section>
+
+<section class="home-section" style="padding:0 6% 110px;">
+    <h2 class="section-title">End-to-End Workflow</h2>
+    <div class="workflow-grid">
+        <div class="workflow-card">
+            <span>1</span>
+            <h3>Import or Draw</h3>
+            <p>Start from DXF and DWG files or draw geometry inside the editor.</p>
+        </div>
+        <div class="workflow-card">
+            <span>2</span>
+            <h3>Prepare Production Data</h3>
+            <p>Assign materials before machining.</p>
+        </div>
+        <div class="workflow-card">
+            <span>3</span>
+            <h3>Nest and Machine</h3>
+            <p>Run nesting and build machining operations.</p>
+        </div>
+        <div class="workflow-card">
+            <span>4</span>
+            <h3>Generate Output</h3>
+            <p>Generate output with the active machine profile.</p>
+        </div>
+    </div>
+</section>
+
+<section id="technical" class="home-section" style="padding:120px 6%;">
+    <h2 class="section-title">Technical Scope</h2>
+    <div class="feature-groups">
+        <div class="feature-group">
+            <h3>Drawing and Geometry</h3>
+            <ul>
+                <li>Integrated drawing tools allow production geometry to be created and corrected inside the same project.</li>
+                <li>DXF and DWG based work can be prepared without moving to another CAD system for small and mid-size edits.</li>
+                <li>Layer-aware editing helps separate contours, drills, marks, bend lines, and process-specific entities.</li>
+                <li>Geometry cleanup supports preparation before nesting or machining when imported files are not ready for output.</li>
+                <li>Drawing work can continue directly into export or into the downstream CAM flow when the selected license allows it.</li>
+            </ul>
+        </div>
+        <div class="feature-group">
+            <h3>Files and Project Data</h3>
+            <ul>
+                <li>The Files tab acts as the project entry point for loaded parts, source drawings, and grouped job content.</li>
+                <li>Project data stays together across tabs so imported files, materials, methods, and machines belong to one workflow.</li>
+                <li>Saved project state is designed to reopen with the same production context instead of isolated tab data.</li>
+                <li>File preparation supports both design-driven projects and production-driven projects that begin from customer geometry.</li>
+                <li>Export and report output can be produced from the same project data without rebuilding the job elsewhere.</li>
+            </ul>
+        </div>
+        <div class="feature-group">
+            <h3>Materials and Cutting Data</h3>
+            <ul>
+                <li>Material definitions keep sheet data, process settings, and cost-related values available to the production workflow.</li>
+                <li>Feeds and speeds information can be loaded with the project so cutting guidance is available when machining is prepared.</li>
+                <li>Material setup supports repeated shop workflows where the same stock types return across many jobs.</li>
+                <li>Centralized cutting data reduces manual re-entry when users move from files to nesting to machining.</li>
+                <li>Production decisions stay closer to actual machine and tool conditions because settings are stored in the software context.</li>
+            </ul>
+        </div>
+        <div class="feature-group">
+            <h3>Nesting and Machining</h3>
+            <ul>
+                <li>Nesting arranges project parts on sheets as part of the same production flow instead of requiring an external optimizer.</li>
+                <li>Machining logic builds operations after geometry and material preparation, which keeps the process sequencing consistent.</li>
+                <li>Toolpaths can be prepared from imported files, from nested layouts, or from specialized module outputs.</li>
+                <li>CAM preparation stays connected to the machine context so output decisions remain tied to real production targets.</li>
+                <li>Report generation can reflect nesting and machining results from the current job rather than from disconnected exports.</li>
+            </ul>
+        </div>
+        <div class="feature-group">
+            <h3>Specialized Production Modules</h3>
+            <ul>
+                <li>Sheet Metal supports unfolding-oriented work for fabrication tasks that need flat pattern preparation.</li>
+                <li>Furniture tools support cabinet and layout-oriented workflows for panel-based production projects.</li>
+                <li>Heightmap tools extend the software beyond flat geometry into relief and surface-based machining work.</li>
+                <li>Specialized modules remain inside one application so users do not have to rebuild the same project in separate systems.</li>
+                <li>Each module can feed forward into later stages such as export, nesting, machining, generation, and reporting.</li>
+            </ul>
+        </div>
+        <div class="feature-group">
+            <h3>Machines, Generation, and Output</h3>
+            <ul>
+                <li>Machine profiles store production-specific settings that influence how output is generated for the current project.</li>
+                <li>The Generation tab works against the active machine so postprocessing stays aligned with the selected output target.</li>
+                <li>Full license projects are limited to one machine definition, which fits a single-machine production setup.</li>
+                <li>Multi-machine projects support more than one machine definition and allow machine selection inside Generation.</li>
+                <li>Output, export, and reporting stay connected to the same project state, which reduces mismatches between setup and result.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="home-section" style="padding:120px 6%;">
+    <h2 class="section-title">Built for Real Shops</h2>
+    <div class="info-layout">
+        <div class="info-panel">
+            <h3>Software Scope</h3>
+            <p>
+                GcodePlanner keeps design and production work in one project.
+            </p>
+            <ul class="info-list">
+                <li><strong>CAD-focused work:</strong> drawing and preparation are available in one place.</li>
+                <li><strong>CAM-focused work:</strong> nesting and machining stay in the same project.</li>
+                <li><strong>Full projects:</strong> output stays aware of the machine selected for generation.</li>
+            </ul>
+        </div>
+        <div class="info-panel">
+            <h3>Machine-Aware Generation</h3>
+            <p>
+                The Generation tab works with the current machine context so postprocessing stays aligned with the selected machine setup.
+            </p>
+            <ul class="info-list">
+                <li><strong>Full license:</strong> one machine can be added to the project.</li>
+                <li><strong>Multi-machine license:</strong> multiple machines can be added to the same project.</li>
+                <li><strong>Demo license:</strong> generation is disabled and drawings cannot be saved.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer style="background:rgba(5,5,5,0.9); padding:80px 6% 40px; text-align:center; color:#555;">
+    <p>&copy; 2026 GcodePlanner • Advanced CAD/CAM Solution for Precision Manufacturing</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

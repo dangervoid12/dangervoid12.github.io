@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Designer - GcodePlanner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="module-page">
+
+<header id="header">
+    <a href="../index.html" class="logo">Gcode<span>Planner</span></a>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#modules">Modules</a>
+        <a href="../index.html#technical">Technical</a>
+        <a href="../pricing.html">Plans</a>
+        <a href="../download.html">Download</a>
+        <a href="../contact.html">Contact</a>
+    </nav>
+    <a href="../pricing.html" class="btn">Get License</a>
+</header>
+
+<div class="sub-menu">
+    <a href="sheetmetal.html">Sheet Metal</a>
+    <a href="furniture.html">Furniture</a>
+    <a href="nesting.html">Nesting</a>
+    <a href="machining.html">Machining</a>
+    <a href="drawing.html">Drawing</a>
+    <a href="feedsandspeeds.html">Feeds & Speeds</a>
+    <a href="heightmap.html">Heightmap</a>
+    <a href="materials.html">Materials</a>
+    <a href="files.html">Files</a>
+    <a href="report.html">Report</a>
+</div>
+
+<div class="module-hero" style="background: linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.84)), url('../img/Furniture-1.png') center/cover;">
+    <h1>Furniture Designer</h1>
+</div>
+
+<div class="content">
+    <h2 style="font-size:2.6rem; margin-bottom:25px;">Parametric Furniture & Cabinet Design</h2>
+    <p style="font-size:1.3rem; max-width:1100px; margin-bottom:40px;">
+        The Furniture Designer module in GcodePlanner allows for rapid creation of professional-grade cabinets, bookcases, and custom furniture. By using a parametric approach, you can adjust dimensions in real-time while the software automatically manages panels, hardware placement, and fabrication details.
+    </p>
+
+    <div class="photo-grid">
+        <div>
+            <img src="../img/Furniture-2.png" alt="3D Cabinet View">
+            <p style="text-align:center; margin-top:18px; color:#aaa;">Real-time 3D Parametric Preview</p>
+        </div>
+        <div>
+            <img src="../img/Furniture-3.png" alt="Hardware Details">
+            <p style="text-align:center; margin-top:18px; color:#aaa;">Automatic Hardware & Joinery Generation</p>
+        </div>
+        <div>
+            <img src="../img/Furniture-.png" alt="Furniture Layout">
+            <p style="text-align:center; margin-top:18px; color:#aaa;">Additional furniture layout view</p>
+        </div>
+    </div>
+
+    <h3 style="margin:45px 0 20px;">Intelligent Features</h3>
+    <ul style="font-size:1.22rem; line-height:2.35;">
+        <li><strong>Parametric Templates:</strong> Bookcases, base cabinets, wardrobes, desks, workbenches, and more.</li>
+        <li><strong>Zoned Layouts:</strong> Split bays into multiple zones with independent doors, drawers, or open shelving.</li>
+        <li><strong>Automatic Hardware:</strong> Intelligent placement of concealed hinges, drawer slides, and shelf pins based on industry standards.</li>
+        <li><strong>Joinery Optimization:</strong> Automatic generation of carcass bolts, dowels, and dado joints for robust construction.</li>
+        <li><strong>One-Click Export:</strong> Send all panels directly to the Nesting module or export as production-ready DXF files.</li>
+        <li><strong>Dynamic Dragging:</strong> Interactively adjust shelf positions and zone splits directly in the 3D viewport.</li>
+    </ul>
+
+    <p style="margin-top:40px; font-size:1.2rem;">
+        Whether you are a professional cabinet maker or a hobbyist woodworker, the Furniture Designer streamlines your workflow from initial concept to the final G-code.
+    </p>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.content > *').forEach((el, i) => {
+        el.classList.add('fade-in');
+        setTimeout(() => el.classList.add('visible'), 100 + i * 150);
+      });
+    });
+</script>
+</body>
+</html>

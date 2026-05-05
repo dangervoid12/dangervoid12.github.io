@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing & Plans - GcodePlanner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero {
+          height: 40vh;
+          background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.85)), #0a0a0a;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .pricing-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 25px;
+          margin-top: 40px;
+        }
+
+        .pricing-card {
+          background: var(--gray);
+          border: 1px solid #333;
+          border-radius: 16px;
+          padding: 35px 25px;
+          text-align: center;
+          transition: all 0.4s;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .pricing-card.popular {
+          border-color: var(--primary);
+          transform: translateY(-10px);
+          box-shadow: 0 15px 35px rgba(0, 102, 255, 0.15);
+        }
+
+        .pricing-card h3 {
+          font-size: 1.6rem;
+          margin-bottom: 10px;
+          color: white;
+        }
+
+        .price {
+          font-size: 2.8rem;
+          font-weight: bold;
+          color: var(--primary);
+          margin: 15px 0;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+            flex-grow: 1;
+        }
+
+        .pricing-card ul li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        .pricing-card ul li.disabled {
+            color: #555;
+            text-decoration: line-through;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+        }
+
+        .license-note {
+          max-width: 1100px;
+          margin: 55px auto 0;
+          padding: 26px 28px;
+          border: 1px solid #2d2d2d;
+          border-radius: 16px;
+          background: #131313;
+          color: #bdbdbd;
+        }
+
+        .license-note h2,
+        .matrix-section h2,
+        .generation-preview h2 {
+          font-size: 2rem;
+          margin-bottom: 14px;
+          color: white;
+        }
+
+        .matrix-section {
+          margin-top: 60px;
+        }
+
+        .license-matrix {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 25px;
+          background: #121212;
+          border: 1px solid #2b2b2b;
+          border-radius: 16px;
+          overflow: hidden;
+        }
+
+        .license-matrix th,
+        .license-matrix td {
+          padding: 16px 14px;
+          border-bottom: 1px solid #242424;
+          text-align: left;
+          vertical-align: top;
+        }
+
+        .license-matrix th {
+          background: #171717;
+          color: white;
+          font-size: 0.95rem;
+        }
+
+        .license-matrix td {
+          color: #c7c7c7;
+          font-size: 0.95rem;
+        }
+
+        .license-matrix ul {
+          list-style: none;
+          display: grid;
+          gap: 10px;
+        }
+
+        .license-matrix tr:last-child td {
+          border-bottom: none;
+        }
+
+        .tag-ok,
+        .tag-limit,
+        .tag-off {
+          display: inline-flex;
+          align-items: center;
+          padding: 4px 10px;
+          border-radius: 999px;
+          font-size: 0.82rem;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+
+        .tag-ok {
+          background: rgba(0, 204, 255, 0.14);
+          color: #84e9ff;
+        }
+
+        .tag-limit {
+          background: rgba(255, 184, 0, 0.14);
+          color: #ffd062;
+        }
+
+        .tag-off {
+          background: rgba(255, 95, 95, 0.14);
+          color: #ff9696;
+        }
+
+        .generation-preview {
+          margin-top: 60px;
+          display: grid;
+          grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+          gap: 28px;
+          align-items: stretch;
+        }
+
+        .generation-panel,
+        .generation-copy {
+          background: #141414;
+          border: 1px solid #2b2b2b;
+          border-radius: 18px;
+          padding: 28px;
+        }
+
+        .generation-toolbar {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 14px;
+          margin-bottom: 20px;
+        }
+
+        .generation-stat {
+          background: #1a1a1a;
+          border: 1px solid #2a2a2a;
+          border-radius: 12px;
+          padding: 14px;
+        }
+
+        .generation-stat span {
+          display: block;
+          color: #8d8d8d;
+          font-size: 0.82rem;
+          margin-bottom: 6px;
+        }
+
+        .generation-stat strong {
+          color: white;
+          font-size: 1.08rem;
+        }
+
+        .generation-body {
+          min-height: 220px;
+          border: 1px solid #262626;
+          border-radius: 14px;
+          background:
+            linear-gradient(180deg, rgba(0,102,255,0.06), rgba(0,0,0,0)),
+            #101010;
+          padding: 18px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .toolpath-list {
+          list-style: none;
+          display: grid;
+          gap: 10px;
+        }
+
+        .toolpath-list li {
+          display: flex;
+          justify-content: space-between;
+          gap: 18px;
+          padding: 12px 14px;
+          border-radius: 10px;
+          background: #181818;
+          color: #d0d0d0;
+        }
+
+        .machine-select-row {
+          margin-top: 18px;
+          padding-top: 18px;
+          border-top: 1px solid #262626;
+        }
+
+        .machine-select-row label {
+          display: block;
+          margin-bottom: 8px;
+          color: #a8a8a8;
+          font-size: 0.9rem;
+        }
+
+        .machine-select-row select {
+          width: 100%;
+          padding: 14px 16px;
+          border-radius: 12px;
+          border: 1px solid #333;
+          background: #0f0f0f;
+          color: white;
+          font-size: 0.96rem;
+        }
+
+        .machine-mode {
+          margin-top: 14px;
+          color: #8fcfff;
+          font-size: 0.92rem;
+        }
+
+        @media (max-width: 920px) {
+          .generation-preview {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 760px) {
+          .license-matrix {
+            display: block;
+            overflow-x: auto;
+          }
+
+          .generation-toolbar {
+            grid-template-columns: 1fr;
+          }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <a href="index.html" class="logo">Gcode<span>Planner</span></a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#modules">Modules</a>
+        <a href="pricing.html">Plans</a>
+        <a href="download.html">Download</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <a href="pricing.html" class="btn">Get License</a>
+</header>
+
+<div class="hero">
+    <div>
+        <h1 style="font-size: 3.5rem;">Licensing Plans</h1>
+        <p style="font-size: 1.3rem; color: #aaa;">Professional solutions for every workshop scale</p>
+    </div>
+</div>
+
+<div class="content" style="max-width: 1400px;">
+    <div class="pricing-container">
+
+        <div class="pricing-card">
+            <h3>Demo</h3>
+            <div class="price">Free</div>
+            <p><strong>Trial & Evaluation</strong></p>
+            <ul>
+                <li><i class="fas fa-check"></i> Review the interface, tabs, and general workflow before purchase.</li>
+                <li><i class="fas fa-check"></i> Use the evaluation period to inspect how projects move from setup to output.</li>
+                <li class="disabled"><i class="fas fa-times"></i> Saving drawings is disabled, so finished design work cannot be kept.</li>
+                <li class="disabled"><i class="fas fa-times"></i> Generation is disabled, so no final machine output can be created.</li>
+                <li class="disabled"><i class="fas fa-times"></i> Commercial production use is not included in the demo plan.</li>
+            </ul>
+            <a href="download.html" class="btn btn-secondary">Download Demo</a>
+        </div>
+
+        <div class="pricing-card">
+            <h3>CAD</h3>
+            <div class="price">$790</div>
+            <p><strong>Design Specialist</strong></p>
+            <ul>
+                <li><i class="fas fa-check"></i> Create, adjust, and prepare production drawings inside the software.</li>
+                <li><i class="fas fa-check"></i> Build furniture and cabinet layouts as part of the same design workflow.</li>
+                <li><i class="fas fa-check"></i> Prepare flattened sheet metal parts for later fabrication work.</li>
+                <li><i class="fas fa-check"></i> Open project files and source geometry for design-side preparation.</li>
+                <li><i class="fas fa-check"></i> Export finished geometry for downstream manufacturing systems.</li>
+                <li class="disabled"><i class="fas fa-times"></i> Nesting, machining, generation, and report production are not included.</li>
+            </ul>
+            <a href="contact.html" class="btn btn-secondary">Select CAD</a>
+        </div>
+
+        <div class="pricing-card">
+            <h3>CAM</h3>
+            <div class="price">$1,490</div>
+            <p><strong>Production Focused</strong></p>
+            <ul>
+                <li><i class="fas fa-check"></i> Load prepared parts and organize the project for production work.</li>
+                <li><i class="fas fa-check"></i> Define materials, sheets, and setup data before machining starts.</li>
+                <li><i class="fas fa-check"></i> Nest parts to improve material usage inside the same workflow.</li>
+                <li><i class="fas fa-check"></i> Build machining operations and prepare output-ready production logic.</li>
+                <li><i class="fas fa-check"></i> Generate machine output, export results, and prepare reports.</li>
+                <li class="disabled"><i class="fas fa-times"></i> Drawing, furniture, and sheet metal authoring tools are not included.</li>
+            </ul>
+            <a href="contact.html" class="btn btn-secondary">Select CAM</a>
+        </div>
+
+        <div class="pricing-card popular">
+            <h3>Full</h3>
+            <div class="price">$2,490</div>
+            <p><strong>Complete Suite</strong></p>
+            <ul>
+                <li><i class="fas fa-check"></i> The full design workflow is enabled, including drawing, furniture, and sheet metal preparation.</li>
+                <li><i class="fas fa-check"></i> The full production workflow is enabled, including materials, nesting, machining, generation, export, and reports.</li>
+                <li><i class="fas fa-check"></i> One project can move from geometry preparation to machine output without changing software.</li>
+                <li><i class="fas fa-check"></i> One machine can be added to the project and used as the active machine target.</li>
+                <li><i class="fas fa-check"></i> Generation uses the active machine profile for final output behavior.</li>
+                <li><i class="fas fa-check"></i> Best fit for a single-machine workshop or a stable one-machine programming seat.</li>
+            </ul>
+            <a href="contact.html" class="btn">Get Full Access</a>
+        </div>
+
+        <div class="pricing-card">
+            <h3>Multi-Machine</h3>
+            <div class="price">$3,490</div>
+            <p><strong>Enterprise Solution</strong></p>
+            <ul>
+                <li><i class="fas fa-check"></i> Includes the same complete workflow as Full across design, production, export, and reporting.</li>
+                <li><i class="fas fa-check"></i> More than one machine can be added to the same project.</li>
+                <li><i class="fas fa-check"></i> The current machine can be switched directly in the Generation tab.</li>
+                <li><i class="fas fa-check"></i> Different machine definitions can stay attached to one job without rebuilding the project.</li>
+                <li><i class="fas fa-check"></i> Separate output behavior can be maintained for different machines or production cells.</li>
+                <li><i class="fas fa-check"></i> Better fit for shops that program for multiple machines from one project context.</li>
+            </ul>
+            <a href="contact.html" class="btn btn-secondary">Go Enterprise</a>
+        </div>
+
+    </div>
+
+    <section class="license-note" id="license-logic">
+        <h2>License Logic</h2>
+        <p>
+            GcodePlanner is licensed by workflow depth, not only by feature count. That means each license is meant to match how a shop actually works inside the software. Demo is for review and evaluation. CAD is for users who prepare geometry, furniture layouts, and sheet metal design data without running the production side. CAM is for users who already have geometry and need to move through materials, nesting, machining, generation, export, and report output. Full combines the design and production paths inside one project but keeps the machine model limited to a single configured machine. Multi-machine extends the same complete workflow with more than one machine in the project and a current-machine selection in the Generation tab. This keeps licensing tied to real operational scope instead of unlocking unrelated tools without context.
+        </p>
+        <p style="margin-top: 16px;">
+            The practical effect is that access changes by stage of work. A design-focused seat can stay centered on drawing, furniture, sheet metal, files, and export. A production-focused seat can stay centered on files, materials, nesting, machining, generation, export, and report output. A full production office can keep everything in one place and then decide whether the job belongs to one machine or to several machines. This is why the machine rules are part of the license logic and not only part of the machine tab.
+        </p>
+    </section>
+
+    <section class="matrix-section" id="workflow-access">
+        <h2>Workflow Access Matrix</h2>
+        <table class="license-matrix">
+            <thead>
+            <tr>
+                <th>License</th>
+                <th>What You Can Do</th>
+                <th>Restrictions</th>
+                <th>Machine Handling</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><strong>Demo</strong></td>
+                <td>
+                    <ul>
+                        <li>Review the interface before purchase</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><span class="tag-off">Saving is disabled</span></li>
+                        <li><span class="tag-off">Generation is disabled</span></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Machine setup can be reviewed only</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>CAD</strong></td>
+                <td>
+                    <ul>
+                        <li>Create and edit 2D drawings</li>
+                        <li>Build furniture and cabinet projects</li>
+                        <li>Prepare flattened sheet metal parts</li>
+                        <li>Import source files for design work</li>
+                        <li>Export prepared geometry</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><span class="tag-off">CAM workflow is not included</span></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Use exported output in other production systems</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>CAM</strong></td>
+                <td>
+                    <ul>
+                        <li>Import files for production</li>
+                        <li>Set up materials and sheets</li>
+                        <li>Nest parts for material usage</li>
+                        <li>Create machining operations</li>
+                        <li>Generate NC output</li>
+                        <li>Export reports and results</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><span class="tag-off">CAD authoring tools are not included</span></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Production output is tied to the active machine setup</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Full</strong></td>
+                <td>
+                    <ul>
+                        <li>Use the full design workflow</li>
+                        <li>Use the full production workflow</li>
+                        <li>Move from drawing to generation inside one project</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><span class="tag-limit">One machine per project</span></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Generation runs with one active machine profile</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Multi-machine</strong></td>
+                <td>
+                    <ul>
+                        <li>Use the full design workflow</li>
+                        <li>Use the full production workflow</li>
+                        <li>Manage output for more than one machine</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><span class="tag-ok">Multiple machines in one project</span></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Select the current machine in Generation</li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="generation-preview" id="generation-workflow">
+        <div class="generation-panel">
+            <h2>Generation Tab Workflow</h2>
+            <div class="generation-toolbar">
+                <div class="generation-stat">
+                    <span>Program</span>
+                    <strong>Cabinet side panel</strong>
+                </div>
+                <div class="generation-stat">
+                    <span>Postprocessor</span>
+                    <strong>3-axis router</strong>
+                </div>
+                <div class="generation-stat">
+                    <span>Status</span>
+                    <strong id="machineStatus">Single machine project</strong>
+                </div>
+            </div>
+            <div class="generation-body">
+                <ul class="toolpath-list">
+                    <li><span>Contour cut</span><span>T1 - 1240 mm</span></li>
+                    <li><span>Pocket machining</span><span>T3 - 320 mm</span></li>
+                    <li><span>Drilling cycle</span><span>T6 - 28 holes</span></li>
+                </ul>
+                <div class="machine-select-row">
+                    <label for="currentMachine">Current machine</label>
+                    <select id="currentMachine">
+                        <option value="full">Rover A Router</option>
+                        <option value="multi">Laser Cell 02</option>
+                        <option value="multi">Nested Router B</option>
+                    </select>
+                    <p class="machine-mode" id="machineModeText">Full license: one machine can be assigned to the project.</p>
+                </div>
+            </div>
+        </div>
+        <div class="generation-copy" id="machine-handling">
+            <h2>What Changes by License</h2>
+            <p>
+                Full license users can move from design tabs to production tabs without leaving the same project. The important limit is machine ownership inside that project. One machine can be added, maintained, and used as the active output target, which fits a workshop that programs for one physical machine or one stable postprocessor setup.
+            </p>
+            <p style="margin-top: 16px;">
+                Multi-machine keeps the same complete workflow but removes the one-machine project limit. More than one machine can be added, each machine can carry its own setup, and the current machine can be selected in Generation when output is prepared. That is useful when the same project may run on different routers, cells, or output configurations.
+            </p>
+            <p style="margin-top: 16px;">
+                CAD and CAM licenses stay narrower by design. CAD supports authoring and preparation work around Drawing, Furniture, Sheet Metal, Files, and Export. CAM supports production work around Files, Materials, Nesting, Machining, Generation, Export, and Report. Demo is intentionally restrictive so evaluation can happen without creating production output or saving finished drawing work.
+            </p>
+        </div>
+    </section>
+
+    <div style="text-align: center; margin-top: 60px; color: #888;">
+        <p>One-time purchase for all licenses. Annual maintenance includes all version updates.</p>
+    </div>
+</div>
+
+<footer style="background:#050505; padding:80px 6% 40px; text-align:center; color:#555;">
+    <p>&copy; 2026 GcodePlanner • Advanced CAD/CAM Solution for Precision Manufacturing</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
