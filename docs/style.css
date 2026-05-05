@@ -10,9 +10,19 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--dark);
+  background:
+    linear-gradient(rgba(8, 10, 14, 0.48), rgba(8, 10, 14, 0.62)),
+    url('img/background.png') center / cover fixed no-repeat,
+    var(--dark);
   color: #ddd;
   line-height: 1.7;
+}
+
+body.module-page {
+  background:
+    linear-gradient(rgba(8, 10, 14, 0.34), rgba(8, 10, 14, 0.50)),
+    url('../img/background.png') center / cover fixed no-repeat,
+    var(--dark);
 }
 
 /* Glassmorphism Header */
@@ -118,6 +128,17 @@ nav a:hover {
   max-width: 1250px;
   margin: 80px auto;
   padding: 0 6%;
+  background: rgba(12, 14, 18, 0.42);
+  backdrop-filter: blur(3px);
+  border-radius: 18px;
+}
+
+.module-hero {
+  min-height: 42vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .photo-grid {
