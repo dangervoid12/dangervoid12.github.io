@@ -1,9 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
     if (header) {
+        // Avoid jitter near threshold: hysteresis + rAF-throttled updates.
+        let isScrolled = false;
+        let ticking = false;
+        const enterY = 96;
+        const leaveY = 64;
+        const updateHeader = () => {
+            const y = window.scrollY || window.pageYOffset || 0;
+            if (!isScrolled && y > enterY) {
+                isScrolled = true;
+                header.classList.add('scrolled');
+            } else if (isScrolled && y < leaveY) {
+                isScrolled = false;
+                header.classList.remove('scrolled');
+            }
+            ticking = false;
+        };
         window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 80);
-        });
+            if (!ticking) {
+                ticking = true;
+                window.requestAnimationFrame(updateHeader);
+            }
+        }, { passive: true });
+        updateHeader();
     }
 
     const observer = new IntersectionObserver((entries) => {

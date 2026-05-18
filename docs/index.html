@@ -159,6 +159,17 @@
           border-radius: 12px;
           color: #c9d0d9;
         }
+        @media (max-width: 900px), (hover: none) and (pointer: coarse) {
+          .home-fixed-bg {
+            position: absolute;
+            inset: 0;
+            background-attachment: scroll;
+          }
+          .home-overlay {
+            position: absolute;
+            inset: 0;
+          }
+        }
         @media (max-width: 900px) {
           .info-layout {
             grid-template-columns: 1fr;

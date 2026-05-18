@@ -33,15 +33,15 @@ header {
   top: 0;
   z-index: 1000;
   padding: 1.1rem 6%;
+  min-height: 78px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(255,255,255,0.08);
-  transition: all 0.4s ease;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 header.scrolled {
-  padding: 0.85rem 6%;
   background: rgba(10, 10, 10, 0.97);
 }
 
@@ -198,4 +198,23 @@ nav a:hover {
 /* Show sub-menu only on module pages */
 body.module-page .sub-menu {
   display: flex;
+}
+
+/* Mobile scroll stability: avoid fixed-attachment repaint jitter */
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  body {
+    background:
+      linear-gradient(rgba(8, 10, 14, 0.48), rgba(8, 10, 14, 0.62)),
+      url('img/background.png') center / cover no-repeat,
+      var(--dark);
+    background-attachment: scroll;
+  }
+
+  body.module-page {
+    background:
+      linear-gradient(rgba(8, 10, 14, 0.34), rgba(8, 10, 14, 0.50)),
+      url('../img/background.png') center / cover no-repeat,
+      var(--dark);
+    background-attachment: scroll;
+  }
 }
